@@ -13,6 +13,9 @@ print("**** Sub Script Linux Config Build")
 include_packages.append(CURRENT_DIR + os.sep +'src')
 
 #env.Append(LDFLAGS=['-ldl'])
+
+lib_packages.append('SDL2')
+
 lib_packages += core_packages
 include_packages +=core_packages
 
