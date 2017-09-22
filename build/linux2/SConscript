@@ -1,0 +1,36 @@
+#!python
+import os
+
+# import these variables from the parent build script
+#Import('env', 'sources', 'static_libs', 'test_sources')
+Import('env','SRC_PATH','buildroot','include_packages','core_packages','CURRENT_DIR','SDL2_LIB_PATH','SDL2_INCLUDE_PATH','buildroot','targetpath','builddir','lib_packages')
+
+SDL2_LIB_PATH = '/usr/local/lib'
+SDL2_INCLUDE_PATH = '/usr/local/include/SDL2'
+
+print("**** Sub Script Linux Config Build")
+
+include_packages.append(CURRENT_DIR + os.sep +'src')
+
+#env.Append(LDFLAGS=['-ldl'])
+lib_packages += core_packages
+include_packages +=core_packages
+
+include_packages.append('/user/include/c++/6')
+include_packages.append(SDL2_INCLUDE_PATH)
+
+env.Append(CPPPATH=include_packages) #SDL2
+
+Export('SDL2_LIB_PATH','SDL2_INCLUDE_PATH')
+
+env.Append(LD_LIBRARY_PATH='/usr/local/lib')
+env.Append(CCFLAGS=['/usr/local/bin/sdl2-config'])
+
+
+env.Program(CURRENT_DIR + os.sep +targetpath, Glob(CURRENT_DIR + os.sep +builddir + os.sep + '*.cpp'),
+LIBS=lib_packages,
+LIBPATH=['/usr/lib','/usr/local/lib',CURRENT_DIR + os.sep + 'src', CURRENT_DIR + os.sep + buildroot, SDL2_LIB_PATH]#,
+#CXXFLAGS=['/NODEFAULTLIB:library']
+)
+print(CURRENT_DIR + os.sep + buildroot)
+print(CURRENT_DIR + os.sep + 'src')
