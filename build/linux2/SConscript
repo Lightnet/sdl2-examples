@@ -13,7 +13,7 @@ print("**** Sub Script Linux Config Build")
 include_packages.append(CURRENT_DIR + os.sep +'src')
 
 #env.Append(LDFLAGS=['-ldl'])
-env.Append(LINKFLAGS=['-g \'-curses\'']) #work here
+#env.Append(LINKFLAGS=['-g \'-curses\''])
 
 lib_packages.append('SDL2')
 
