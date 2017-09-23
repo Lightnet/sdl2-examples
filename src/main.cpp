@@ -1,7 +1,8 @@
 // Example program:
 // Using SDL2 to create an application window
 
-#include "SDL.h"
+#include <SDL.h>
+#include <SDL_opengl.h>
 #include <stdio.h>
 
 #undef main
@@ -24,6 +25,9 @@ int main(int argc, char* argv[]) {
         SDL_WINDOW_OPENGL                  // flags - see below
     );
 
+    // Create an OpenGL context associated with the window.
+    SDL_GLContext glcontext = SDL_GL_CreateContext(window);
+
     // Check that the window was successfully created
     if (window == NULL) {
         // In the case that the window could not be made...
@@ -41,8 +45,16 @@ int main(int argc, char* argv[]) {
 				break;
 			}
         }
+        // now you can make GL calls.
+        //glClearColor(0,0,0,1);
+        //glClear(GL_COLOR_BUFFER_BIT);
+        
+
         SDL_GL_SwapWindow(window);
     }
+
+    // Once finished with OpenGL functions, the SDL_GLContext can be deleted.
+    SDL_GL_DeleteContext(glcontext);  
 
     // Close and destroy the window
     SDL_DestroyWindow(window);
