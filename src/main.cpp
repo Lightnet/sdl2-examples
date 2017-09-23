@@ -8,6 +8,8 @@
 
 int main(int argc, char* argv[]) {
 
+    printf("Hello World");
+    
     SDL_Window *window;                    // Declare a pointer
 
     SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
@@ -47,5 +49,6 @@ int main(int argc, char* argv[]) {
 
     // Clean up
     SDL_Quit();
+    
     return 0;
 }
